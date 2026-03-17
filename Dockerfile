@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim
+FROM node:25-bookworm-slim
 
 ARG OPENSHELL_VERSION=latest
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     docker.io \
+    git \
     iproute2 \
     jq \
     procps \
@@ -32,7 +33,8 @@ RUN set -eux; \
     install -m 0755 /tmp/openshell /usr/local/bin/openshell; \
     rm -f /tmp/openshell /tmp/openshell.tgz
 
-RUN npm install -g nemoclaw
+ARG NEMOCLAW_REF=main
+RUN npm install -g "git+https://github.com/NVIDIA/NemoClaw.git#${NEMOCLAW_REF}"
 
 WORKDIR /workspace
 

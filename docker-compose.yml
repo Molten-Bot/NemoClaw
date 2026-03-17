@@ -4,6 +4,7 @@ services:
       context: .
       args:
         OPENSHELL_VERSION: ${OPENSHELL_VERSION:-latest}
+        NEMOCLAW_REF: ${NEMOCLAW_REF:-main}
     image: nemoclaw:local
     container_name: nemoclaw
     stdin_open: true

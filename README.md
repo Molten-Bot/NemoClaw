@@ -5,7 +5,7 @@ This repo provides a Dockerized way to run NVIDIA NemoClaw (`nemoclaw`) without 
 ## What this container includes
 
 - Node.js 22
-- `nemoclaw` CLI (`npm install -g nemoclaw`)
+- `nemoclaw` CLI (installed from `NVIDIA/NemoClaw` source)
 - `openshell` CLI (downloaded from NVIDIA OpenShell releases)
 - Docker CLI (container talks to your host Docker daemon via mounted socket)
 
@@ -20,10 +20,10 @@ This repo provides a Dockerized way to run NVIDIA NemoClaw (`nemoclaw`) without 
 docker compose build
 ```
 
-Optional: pin OpenShell release at build time:
+Optional: pin OpenShell release and NemoClaw ref at build time:
 
 ```bash
-OPENSHELL_VERSION=v0.10.0 docker compose build
+OPENSHELL_VERSION=v0.10.0 NEMOCLAW_REF=main docker compose build
 ```
 
 ## Run NemoClaw onboarding
