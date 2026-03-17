@@ -1,0 +1,25 @@
+services:
+  nemoclaw:
+    build:
+      context: .
+      args:
+        OPENSHELL_VERSION: ${OPENSHELL_VERSION:-latest}
+    image: nemoclaw:local
+    container_name: nemoclaw
+    stdin_open: true
+    tty: true
+    network_mode: host
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - nemoclaw_registry:/root/.nemoclaw
+      - openclaw_config:/root/.openclaw
+      - openshell_config:/root/.config/openshell
+      - .:/workspace
+
+volumes:
+  nemoclaw_registry:
+  openclaw_config:
+  openshell_config:
